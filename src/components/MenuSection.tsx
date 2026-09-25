@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { cafeData } from "@/data/cafe";
 import { MenuItem } from "@/types/cafe";
-import { FileText, MessageCircle, X, BookOpen, Check } from "lucide-react";
+import { FileText, MessageCircle, X, BookOpen } from "lucide-react";
 
 export function MenuSection() {
   const [activeCategory, setActiveCategory] = useState<string>("coffee");

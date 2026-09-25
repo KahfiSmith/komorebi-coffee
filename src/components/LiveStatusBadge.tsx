@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { getBusinessHoursStatus, BusinessHoursStatus } from "@/utils/businessHours";
 
 interface LiveStatusBadgeProps {
@@ -8,20 +8,33 @@ interface LiveStatusBadgeProps {
   variant?: "pill" | "text" | "schedule";
 }
 
+let cachedStatus: BusinessHoursStatus | null = null;
+let lastMinute = -1;
+
+function getSnapshot(): BusinessHoursStatus {
+  const currentMinute = Math.floor(Date.now() / 60000);
+  if (!cachedStatus || lastMinute !== currentMinute) {
+    lastMinute = currentMinute;
+    cachedStatus = getBusinessHoursStatus();
+  }
+  return cachedStatus;
+}
+
+function getServerSnapshot(): BusinessHoursStatus | null {
+  return null;
+}
+
+function subscribe(callback: () => void) {
+  const timer = setInterval(() => {
+    lastMinute = -1;
+    callback();
+  }, 60000);
+
+  return () => clearInterval(timer);
+}
+
 export function LiveStatusBadge({ className = "", variant = "pill" }: LiveStatusBadgeProps) {
-  const [status, setStatus] = useState<BusinessHoursStatus | null>(null);
-
-  useEffect(() => {
-    // Initial check
-    setStatus(getBusinessHoursStatus());
-
-    // Update every minute to keep realtime accuracy
-    const timer = setInterval(() => {
-      setStatus(getBusinessHoursStatus());
-    }, 60000);
-
-    return () => clearInterval(timer);
-  }, []);
+  const status = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   // Graceful fallback during server hydration
   if (!status) {
@@ -38,7 +51,7 @@ export function LiveStatusBadge({ className = "", variant = "pill" }: LiveStatus
       <span className={`inline-flex items-center gap-2 text-xs sm:text-sm font-medium ${className}`}>
         <span
           className={`w-2 h-2 rounded-full ${
-            status.isOpen ? "bg-emerald-600" : "bg-stone-400"
+            status.isOpen ? "bg-amber-400" : "bg-stone-400"
           }`}
           aria-hidden="true"
         />
@@ -53,7 +66,7 @@ export function LiveStatusBadge({ className = "", variant = "pill" }: LiveStatus
     <div
       className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border ${
         status.isOpen
-          ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+          ? "bg-[#FAF8F5] text-[#1C1917] border-[#E7E2DA]"
           : "bg-stone-100 text-stone-700 border-stone-200"
       } ${className}`}
       role="status"
@@ -61,7 +74,7 @@ export function LiveStatusBadge({ className = "", variant = "pill" }: LiveStatus
     >
       <span
         className={`w-2 h-2 rounded-full ${
-          status.isOpen ? "bg-emerald-600" : "bg-stone-500"
+          status.isOpen ? "bg-[#845D3E]" : "bg-stone-400"
         }`}
         aria-hidden="true"
       />
