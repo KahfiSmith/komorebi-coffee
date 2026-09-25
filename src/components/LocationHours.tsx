@@ -8,7 +8,6 @@ export function LocationHours() {
   return (
     <section id="location" className="py-20 sm:py-28 bg-[#F3EFEA] text-[#1C1917]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-semibold uppercase tracking-widest text-[#845D3E] block mb-2">
             Temukan Kami
@@ -21,12 +20,9 @@ export function LocationHours() {
           </p>
         </div>
 
-        {/* Two-Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-          {/* Left Column: Details, Hours & Direct Contacts */}
           <div className="lg:col-span-5 bg-[#FAF8F5] p-8 sm:p-10 rounded-2xl border border-[#E7E2DA] flex flex-col justify-between space-y-8">
             <div className="space-y-6">
-              {/* Address */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-[#845D3E]">
                   <MapPin className="w-5 h-5" aria-hidden="true" />
@@ -42,7 +38,6 @@ export function LocationHours() {
                 </p>
               </div>
 
-              {/* Operating Hours Table */}
               <div className="space-y-3 pt-4 border-t border-[#E7E2DA]">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2 text-[#845D3E]">
@@ -67,7 +62,6 @@ export function LocationHours() {
                 </div>
               </div>
 
-              {/* Direct Phone & WhatsApp */}
               <div className="space-y-3 pt-4 border-t border-[#E7E2DA]">
                 <div className="text-xs font-bold uppercase tracking-wider text-[#845D3E] mb-2">
                   Hubungi Kami
@@ -97,7 +91,6 @@ export function LocationHours() {
               </div>
             </div>
 
-            {/* Prominent Get Directions CTA Button */}
             <div className="pt-6 border-t border-[#E7E2DA]">
               <a
                 href={contact.googleMapsUrl}
@@ -111,7 +104,6 @@ export function LocationHours() {
             </div>
           </div>
 
-          {/* Right Column: Google Maps Interactive Embed & Card */}
           <div className="lg:col-span-7 bg-[#FAF8F5] rounded-2xl border border-[#E7E2DA] overflow-hidden shadow-2xs flex flex-col min-h-[380px] lg:min-h-full">
             <iframe
               src={contact.googleMapsEmbedUrl}

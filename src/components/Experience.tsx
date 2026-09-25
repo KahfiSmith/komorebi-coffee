@@ -24,7 +24,6 @@ export function Experience() {
   return (
     <section id="experience" className="py-20 sm:py-28 bg-[#FAF8F5] text-[#1C1917]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-semibold uppercase tracking-widest text-[#845D3E] block mb-2">
             Pengalaman Kunjungan
@@ -37,7 +36,6 @@ export function Experience() {
           </p>
         </div>
 
-        {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
           {cafeData.features.map((feature) => (
             <div

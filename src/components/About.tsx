@@ -8,10 +8,8 @@ export function About() {
     <section id="about" className="py-20 sm:py-28 bg-[#FAF8F5] text-[#1C1917]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Asymmetrical Photography Composition */}
           <div className="lg:col-span-6 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Primary Image */}
               <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-md border border-[#E7E2DA]">
                 <Image
                   src={story.images[0].url}
@@ -22,7 +20,6 @@ export function About() {
                 />
               </div>
 
-              {/* Secondary Overlapping Image */}
               <div className="hidden sm:block absolute -bottom-8 -right-6 w-3/5 aspect-square rounded-xl overflow-hidden shadow-xl border-4 border-[#FAF8F5]">
                 <Image
                   src={story.images[1].url}
@@ -35,7 +32,6 @@ export function About() {
             </div>
           </div>
 
-          {/* Right Column: Narrative & Philosophy */}
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#F3EFEA] border border-[#E7E2DA] text-xs font-semibold uppercase tracking-wider text-[#845D3E]">
               {story.badge}
@@ -55,7 +51,6 @@ export function About() {
               ))}
             </div>
 
-            {/* Value Highlights Grid */}
             <div className="pt-6 border-t border-[#E7E2DA] grid grid-cols-1 sm:grid-cols-3 gap-6">
               {story.highlights.map((item, index) => (
                 <div key={index} className="space-y-1">

@@ -36,7 +36,6 @@ function subscribe(callback: () => void) {
 export function LiveStatusBadge({ className = "", variant = "pill" }: LiveStatusBadgeProps) {
   const status = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  // Graceful fallback during server hydration
   if (!status) {
     return (
       <span className={`inline-flex items-center gap-2 text-xs text-[#57534E] ${className}`}>

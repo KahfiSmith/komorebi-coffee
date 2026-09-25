@@ -37,7 +37,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on Escape key press (Accessibility R-32)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isMobileMenuOpen) {
@@ -48,7 +47,6 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isMobileMenuOpen]);
 
-  // Prevent background scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -79,7 +77,6 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo */}
           <Link
             href="#"
             className="group flex flex-col focus-visible:ring-2 focus-visible:ring-[#845D3E] rounded-sm p-1"
@@ -93,7 +90,6 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Navigation Links with Active Scroll Spy */}
           <nav
             className="hidden md:flex items-center space-x-7"
             aria-label="Main Navigation"
@@ -120,7 +116,6 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Desktop CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
             <a
               href="#reservation"
@@ -130,7 +125,6 @@ export function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
           <div className="flex md:hidden items-center">
             <button
               type="button"
@@ -150,7 +144,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
       {isMobileMenuOpen && (
         <div
           id="mobile-nav"

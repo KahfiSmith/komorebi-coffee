@@ -30,7 +30,6 @@ export function Footer() {
     <footer className="bg-[#FAF8F5] text-[#1C1917] border-t border-[#E7E2DA] pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-[#E7E2DA]">
-          {/* Brand Info & Mission */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="#" className="inline-block">
               <span className="font-serif text-2xl font-bold tracking-wider text-[#1C1917]">
@@ -78,7 +77,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Navigation Links */}
           <div className="lg:col-span-3 space-y-3">
             <p className="font-serif font-bold text-sm tracking-wider uppercase text-[#1C1917]">
               Navigasi Halaman
@@ -117,7 +115,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Jam Operasional */}
           <div className="lg:col-span-3 space-y-3">
             <p className="font-serif font-bold text-sm tracking-wider uppercase text-[#1C1917]">
               Jam Buka
@@ -135,7 +132,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Kontak & Alamat */}
           <div className="lg:col-span-2 space-y-3">
             <p className="font-serif font-bold text-sm tracking-wider uppercase text-[#1C1917]">
               Alamat
@@ -156,7 +152,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Copyright & Craftsmanship Notice */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#57534E] gap-4">
           <p>
             &copy; {currentYear} {cafeData.name}. All rights reserved.

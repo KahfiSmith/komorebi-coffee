@@ -7,7 +7,6 @@ export function Testimonials() {
   return (
     <section id="reviews" className="py-20 sm:py-28 bg-[#FAF8F5] text-[#1C1917]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with Overall Google Rating Badge */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F3EFEA] border border-[#E7E2DA] text-xs font-semibold text-[#845D3E] mb-3">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" aria-hidden="true" />
@@ -34,7 +33,6 @@ export function Testimonials() {
           </p>
         </div>
 
-        {/* Reviews Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {reviews.map((review) => (
             <div
@@ -42,20 +40,17 @@ export function Testimonials() {
               className="p-8 rounded-xl bg-[#F3EFEA] border border-[#E7E2DA] flex flex-col justify-between shadow-2xs hover:shadow-xs transition-shadow"
             >
               <div className="space-y-4">
-                {/* 5-Star Rating */}
                 <div className="flex text-amber-500">
                   {[...Array(review.rating)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-amber-500" aria-hidden="true" />
                   ))}
                 </div>
 
-                {/* Review Text */}
                 <p className="text-base text-[#1C1917] leading-relaxed italic">
                   &ldquo;{review.text}&rdquo;
                 </p>
               </div>
 
-              {/* Author & Verification Meta */}
               <div className="pt-6 mt-6 border-t border-[#E7E2DA] flex items-center justify-between">
                 <div>
                   <p className="font-serif font-bold text-sm text-[#1C1917]">

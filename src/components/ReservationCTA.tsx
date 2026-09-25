@@ -40,14 +40,12 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
       id="reservation"
       className="py-20 sm:py-28 bg-[#1C1917] text-[#FAF8F5] relative overflow-hidden"
     >
-      {/* Subtle radial ambient background */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#845D3E]/15 rounded-full blur-3xl pointer-events-none"
         aria-hidden="true"
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-semibold uppercase tracking-widest text-[#D4A373] block mb-3">
             Ruang Hangat Untuk Anda
@@ -62,7 +60,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
           </p>
         </div>
 
-        {/* Interactive Reservation Form Card */}
         <div className="bg-[#292524] rounded-2xl p-6 sm:p-10 border border-stone-800 shadow-xl max-w-3xl mx-auto mb-12">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-stone-700/60">
             <Calendar className="w-5 h-5 text-[#D4A373]" aria-hidden="true" />
@@ -72,7 +69,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
           </div>
 
           <div className="space-y-6">
-            {/* 1. Jumlah Tamu */}
             <div>
               <label className="text-xs font-semibold uppercase tracking-wider text-stone-300 block mb-2.5 flex items-center gap-2">
                 <Users className="w-4 h-4 text-stone-400" aria-hidden="true" />
@@ -99,7 +95,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
               </div>
             </div>
 
-            {/* 2. Pilihan Area */}
             <div>
               <label className="text-xs font-semibold uppercase tracking-wider text-stone-300 block mb-2.5 flex items-center gap-2">
                 <MapPinned className="w-4 h-4 text-stone-400" aria-hidden="true" />
@@ -126,7 +121,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
               </div>
             </div>
 
-            {/* 3. Tanggal & Jam */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label
@@ -167,7 +161,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
               </div>
             </div>
 
-            {/* 4. Nama & Catatan Tambahan (Optional) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label
@@ -204,7 +197,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
               </div>
             </div>
 
-            {/* Submit Action to WhatsApp */}
             <div className="pt-4 border-t border-stone-700/60">
               <a
                 href={buildWhatsAppUrl()}
@@ -222,7 +214,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
           </div>
         </div>
 
-        {/* Alternative Direct Actions */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-stone-300">
           <a
             href={`tel:${contact.phone}`}

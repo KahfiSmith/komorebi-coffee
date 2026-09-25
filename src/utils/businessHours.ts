@@ -6,7 +6,6 @@ export interface BusinessHoursStatus {
 }
 
 export function getBusinessHoursStatus(date: Date = new Date()): BusinessHoursStatus {
-  // Convert current time to Asia/Jakarta (WIB, UTC+7)
   const formatter = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Jakarta",
     hour12: false,
@@ -22,8 +21,8 @@ export function getBusinessHoursStatus(date: Date = new Date()): BusinessHoursSt
   const currentMinutes = hour * 60 + minute;
 
   const isWeekend = weekday === "Sat" || weekday === "Sun";
-  const openMinutes = 7 * 60; // 07:00 WIB
-  const closeMinutes = isWeekend ? 23 * 60 : 22 * 60; // 23:00 on weekend, 22:00 on weekday
+  const openMinutes = 7 * 60;
+  const closeMinutes = isWeekend ? 23 * 60 : 22 * 60;
   const closeTimeLabel = isWeekend ? "23:00 WIB" : "22:00 WIB";
 
   const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
@@ -37,7 +36,6 @@ export function getBusinessHoursStatus(date: Date = new Date()): BusinessHoursSt
     };
   }
 
-  // If closed, figure out when it opens next
   const opensToday = currentMinutes < openMinutes;
   const nextOpenText = opensToday
     ? "Buka hari ini pukul 07:00 WIB"
