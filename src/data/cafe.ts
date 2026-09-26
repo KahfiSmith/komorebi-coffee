@@ -33,10 +33,10 @@ export const cafeData: CafeConfig = {
     ],
   },
   contact: {
-    phone: "+62315678910",
-    formattedPhone: "(031) 567-8910",
-    whatsapp: "6281234567890",
-    whatsappFormatted: "+62 812-3456-7890",
+    phone: "+6285129627403",
+    formattedPhone: "+62 851-2962-7403",
+    whatsapp: "6285129627403",
+    whatsappFormatted: "+62 851-2962-7403",
     whatsappPrefillMessage:
       "Halo Komorebi Coffee, saya ingin reservasi meja / bertanya tentang kunjungan.",
     email: "halo@komorebicafe.id",

@@ -37,6 +37,13 @@ export function LiveStatusBadge({ className = "", variant = "pill" }: LiveStatus
   const status = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   if (!status) {
+    if (variant === "text") {
+      return (
+        <span className={`inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-stone-300 ${className}`}>
+          <span>Buka Setiap Hari (07:00 - 22:00 WIB)</span>
+        </span>
+      );
+    }
     return (
       <span className={`inline-flex items-center gap-2 text-xs text-[#57534E] ${className}`}>
         <span className="w-2 h-2 rounded-full bg-stone-300" aria-hidden="true" />
@@ -48,12 +55,6 @@ export function LiveStatusBadge({ className = "", variant = "pill" }: LiveStatus
   if (variant === "text") {
     return (
       <span className={`inline-flex items-center gap-2 text-xs sm:text-sm font-medium ${className}`}>
-        <span
-          className={`w-2 h-2 rounded-full ${
-            status.isOpen ? "bg-amber-400" : "bg-stone-400"
-          }`}
-          aria-hidden="true"
-        />
         <span className={status.isOpen ? "text-white" : "text-stone-300"}>
           {status.statusText}
         </span>

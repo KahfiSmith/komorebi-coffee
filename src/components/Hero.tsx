@@ -20,7 +20,6 @@ export function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-medium tracking-wide text-stone-200 mb-6">
-          <span className="w-2 h-2 rounded-full bg-[#D4A373]" aria-hidden="true" />
           <span>Specialty Coffee & Artisan Eatery</span>
         </div>
 
