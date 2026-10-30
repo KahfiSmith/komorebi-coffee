@@ -4,8 +4,9 @@ export const EASE_SMOOTH = [0.4, 0, 0.2, 1] as const;
 
 export const SPRING_TACTILE = {
   type: "spring",
-  stiffness: 400,
-  damping: 28,
+  stiffness: 360,
+  damping: 32,
+  mass: 0.9,
 } as const;
 
 export const SPRING_BOUNCE_SUBTLE = {

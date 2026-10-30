@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { cafeData } from "@/data/cafe";
 import { JsonLd } from "@/components/JsonLd";
-import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
