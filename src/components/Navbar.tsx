@@ -194,6 +194,7 @@ export function Navbar() {
         {isMobileMenuOpen && (
           <motion.div
             id="mobile-nav"
+            data-lenis-prevent
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}

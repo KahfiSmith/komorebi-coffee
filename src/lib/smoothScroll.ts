@@ -1,7 +1,12 @@
 "use client";
 
-let activeScrollRaf: number | null = null;
-let activeScrollCleanup: (() => void) | null = null;
+import type Lenis from "lenis";
+
+let globalLenis: Lenis | null = null;
+
+export function setLenisInstance(lenis: Lenis | null) {
+  globalLenis = lenis;
+}
 
 export function smoothScrollTo(
   target: string | number,
@@ -10,13 +15,39 @@ export function smoothScrollTo(
 ) {
   if (typeof window === "undefined") return;
 
-  if (activeScrollCleanup) {
-    activeScrollCleanup();
-    activeScrollCleanup = null;
+  if (globalLenis) {
+    if (target === 0 || target === "#" || target === "#top") {
+      globalLenis.scrollTo(0, {
+        offset: 0,
+        duration: 1.2,
+        onComplete,
+      });
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, "", window.location.pathname);
+      }
+      return;
+    }
+
+    const cleanTarget =
+      typeof target === "number"
+        ? target
+        : target.startsWith("#")
+        ? target
+        : `#${target}`;
+
+    globalLenis.scrollTo(cleanTarget, {
+      offset: -offset,
+      duration: 1.2,
+      onComplete,
+    });
+
+    if (typeof cleanTarget === "string" && window.history && window.history.pushState) {
+      window.history.pushState(null, "", cleanTarget);
+    }
+    return;
   }
 
   let targetY = 0;
-
   if (target === 0 || target === "#" || target === "#top") {
     targetY = 0;
     if (window.history && window.history.pushState) {
@@ -42,67 +73,9 @@ export function smoothScrollTo(
     }
   }
 
-  const startY = window.scrollY;
-  const distance = targetY - startY;
-
-  if (Math.abs(distance) < 2) {
-    window.scrollTo(0, targetY);
-    if (onComplete) onComplete();
-    return;
-  }
-
-  const duration = Math.min(900, Math.max(500, Math.sqrt(Math.abs(distance)) * 22));
-  let startTime: number | null = null;
-  let isCancelled = false;
-
-  const prevScrollBehavior = document.documentElement.style.scrollBehavior;
-  document.documentElement.style.scrollBehavior = "auto";
-
-  const cleanup = () => {
-    isCancelled = true;
-    if (activeScrollRaf !== null) {
-      cancelAnimationFrame(activeScrollRaf);
-      activeScrollRaf = null;
-    }
-    window.removeEventListener("wheel", cancel);
-    window.removeEventListener("touchstart", cancel);
-    document.documentElement.style.scrollBehavior = prevScrollBehavior;
-    if (activeScrollCleanup === cleanup) {
-      activeScrollCleanup = null;
-    }
-  };
-
-  const cancel = () => {
-    cleanup();
-    if (onComplete) onComplete();
-  };
-
-  activeScrollCleanup = cleanup;
-
-  window.addEventListener("wheel", cancel, { passive: true });
-  window.addEventListener("touchstart", cancel, { passive: true });
-
-  const easeInOutCubic = (t: number) =>
-    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-  function step(currentTime: number) {
-    if (isCancelled) return;
-
-    if (startTime === null) startTime = currentTime;
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const easedProgress = easeInOutCubic(progress);
-
-    window.scrollTo(0, startY + distance * easedProgress);
-
-    if (progress < 1) {
-      activeScrollRaf = requestAnimationFrame(step);
-    } else {
-      window.scrollTo(0, targetY);
-      cleanup();
-      if (onComplete) onComplete();
-    }
-  }
-
-  activeScrollRaf = requestAnimationFrame(step);
+  window.scrollTo({
+    top: targetY,
+    behavior: "smooth",
+  });
+  if (onComplete) onComplete();
 }

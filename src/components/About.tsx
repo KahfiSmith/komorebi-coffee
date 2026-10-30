@@ -64,39 +64,44 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-6 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              <motion.div
-                ref={primaryImageRef}
-                initial={{ opacity: 0, scale: 0.94 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.9, ease: EASE_KOMOREBI }}
-                className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-[#E7E2DA] will-change-transform"
-              >
-                <Image
-                  src={story.images[0].url}
-                  alt={story.images[0].alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover hover:scale-104 transition-transform duration-700 ease-out"
-                />
-              </motion.div>
+              <div ref={primaryImageRef} className="will-change-transform">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.9, ease: EASE_KOMOREBI }}
+                  className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-[#E7E2DA]"
+                >
+                  <Image
+                    src={story.images[0].url}
+                    alt={story.images[0].alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover hover:scale-104 transition-transform duration-700 ease-out"
+                  />
+                </motion.div>
+              </div>
 
-              <motion.div
+              <div
                 ref={secondaryImageRef}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.9, delay: 0.2, ease: EASE_KOMOREBI }}
-                className="hidden sm:block absolute -bottom-10 -right-6 w-3/5 aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-[#FAF8F5] will-change-transform"
+                className="hidden sm:block absolute -bottom-10 -right-6 w-3/5 aspect-square will-change-transform z-10"
               >
-                <Image
-                  src={story.images[1].url}
-                  alt={story.images[1].alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 30vw"
-                  className="object-cover hover:scale-106 transition-transform duration-700 ease-out"
-                />
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.9, delay: 0.2, ease: EASE_KOMOREBI }}
+                  className="w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-[#FAF8F5]"
+                >
+                  <Image
+                    src={story.images[1].url}
+                    alt={story.images[1].alt}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 30vw"
+                    className="object-cover hover:scale-106 transition-transform duration-700 ease-out"
+                  />
+                </motion.div>
+              </div>
             </div>
           </div>
 

@@ -3,13 +3,12 @@
 import { useState } from "react";
 import { cafeData } from "@/data/cafe";
 import { MessageCircle, Phone, MapPin, Calendar, Users, MapPinned, CheckCircle } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { EASE_KOMOREBI, SPRING_TACTILE } from "@/lib/motion";
 import { KineticHeading } from "@/components/motion/KineticTypography";
 
 export function ReservationCTA() {
   const { contact } = cafeData;
-  const shouldReduceMotion = useReducedMotion();
 
   const [guestCount, setGuestCount] = useState<string>("2-4 Orang");
   const [areaPreference, setAreaPreference] = useState<string>("Indoor (AC)");
@@ -44,27 +43,10 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
       id="reservation"
       className="py-24 sm:py-32 bg-[#1C1917] text-[#FAF8F5] relative overflow-hidden"
     >
-      {!shouldReduceMotion ? (
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 0.98, 1],
-            opacity: [0.12, 0.22, 0.15, 0.12],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            repeatType: "mirror",
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[750px] bg-[#845D3E] rounded-full blur-3xl pointer-events-none"
-          aria-hidden="true"
-        />
-      ) : (
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#845D3E]/15 rounded-full blur-3xl pointer-events-none"
-          aria-hidden="true"
-        />
-      )}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(132,93,62,0.18)_0%,transparent_70%)] rounded-full pointer-events-none"
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">

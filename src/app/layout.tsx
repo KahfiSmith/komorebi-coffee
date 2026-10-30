@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { cafeData } from "@/data/cafe";
 import { JsonLd } from "@/components/JsonLd";
+import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -73,7 +74,9 @@ export default function RootLayout({
           Lewati ke konten utama
         </a>
         <JsonLd />
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );
