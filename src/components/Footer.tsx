@@ -5,6 +5,7 @@ import { cafeData } from "@/data/cafe";
 import { MapPin, Phone, MessageCircle } from "lucide-react";
 import { motion } from "motion/react";
 import { SPRING_TACTILE } from "@/lib/motion";
+import { smoothScrollTo } from "@/lib/smoothScroll";
 
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -34,7 +35,14 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-[#E7E2DA]">
           <div className="lg:col-span-4 space-y-4">
-            <Link href="#" className="inline-block group">
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo(0);
+              }}
+              className="inline-block group"
+            >
               <span className="font-serif text-2xl font-bold tracking-wider text-[#1C1917] group-hover:text-[#845D3E] transition-colors">
                 KOMOREBI
               </span>
@@ -105,6 +113,10 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      smoothScrollTo(link.href);
+                    }}
                     className="hover:text-[#845D3E] transition-all hover:translate-x-1 inline-block py-1"
                   >
                     {link.label}

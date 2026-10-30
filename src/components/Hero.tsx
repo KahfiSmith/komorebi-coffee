@@ -11,6 +11,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { EASE_KOMOREBI, SPRING_TACTILE } from "@/lib/motion";
 import { SunlightOverlay } from "@/components/motion/SunlightOverlay";
+import { smoothScrollTo } from "@/lib/smoothScroll";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -138,6 +139,10 @@ export function Hero() {
         >
           <motion.a
             href="#menu"
+            onClick={(e) => {
+              e.preventDefault();
+              smoothScrollTo("#menu");
+            }}
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={SPRING_TACTILE}

@@ -6,11 +6,24 @@ import { cafeData } from "@/data/cafe";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { EASE_KOMOREBI, SPRING_TACTILE } from "@/lib/motion";
+import { smoothScrollTo } from "@/lib/smoothScroll";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+      setTimeout(() => {
+        smoothScrollTo(href);
+      }, 150);
+    } else {
+      smoothScrollTo(href);
+    }
+  };
 
   useEffect(() => {
     const sections = ["about", "menu", "experience", "gallery", "reviews", "location"];
@@ -81,6 +94,13 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           <Link
             href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (isMobileMenuOpen) {
+                setIsMobileMenuOpen(false);
+              }
+              smoothScrollTo(0);
+            }}
             className="group flex flex-col focus-visible:ring-2 focus-visible:ring-[#845D3E] rounded-sm p-1 transition-transform"
             aria-label={`${cafeData.name} Homepage`}
           >
@@ -102,6 +122,7 @@ export function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={`text-sm font-medium transition-colors py-2 relative min-h-[44px] flex items-center ${
                     isActive
                       ? "text-[#845D3E] font-semibold"
@@ -129,6 +150,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             <motion.a
               href="#reservation"
+              onClick={(e) => handleNavClick(e, "#reservation")}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={SPRING_TACTILE}
@@ -191,7 +213,7 @@ export function Navbar() {
                       hidden: { opacity: 0, x: -16 },
                       visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: EASE_KOMOREBI } },
                     }}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className={`text-lg font-serif font-medium py-3.5 border-b border-[#E7E2DA]/60 min-h-[48px] flex items-center justify-between ${
                       isActive ? "text-[#845D3E] font-bold" : "text-[#1C1917]"
                     }`}
@@ -212,7 +234,7 @@ export function Navbar() {
             >
               <a
                 href="#reservation"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, "#reservation")}
                 className="w-full flex items-center justify-center px-6 py-3.5 text-base font-medium text-white bg-[#1C1917] hover:bg-[#845D3E] rounded-md transition-colors min-h-[48px]"
               >
                 Reserve a Table
