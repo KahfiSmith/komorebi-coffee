@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { cafeData } from "@/data/cafe";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { EASE_KOMOREBI, SPRING_TACTILE } from "@/lib/motion";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -69,7 +71,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#E7E2DA] shadow-xs py-3.5"
           : "bg-transparent py-5"
@@ -79,13 +81,13 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           <Link
             href="#"
-            className="group flex flex-col focus-visible:ring-2 focus-visible:ring-[#845D3E] rounded-sm p-1"
+            className="group flex flex-col focus-visible:ring-2 focus-visible:ring-[#845D3E] rounded-sm p-1 transition-transform"
             aria-label={`${cafeData.name} Homepage`}
           >
             <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-[#1C1917] group-hover:text-[#845D3E] transition-colors">
               KOMOREBI
             </span>
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#57534E] -mt-1 font-medium">
+            <span className="text-[10px] tracking-[0.2em] uppercase text-[#57534E] -mt-1 font-medium group-hover:tracking-[0.24em] transition-all">
               Coffee & Dining
             </span>
           </Link>
@@ -107,9 +109,17 @@ export function Navbar() {
                   }`}
                   aria-current={isActive ? "page" : undefined}
                 >
-                  <span>{link.label}</span>
+                  <span className="relative z-10">{link.label}</span>
                   {isActive && (
-                    <span className="absolute bottom-1 left-0 right-0 h-0.5 bg-[#845D3E] rounded-full transition-all" />
+                    <motion.span
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-1.5 left-0 right-0 h-0.5 bg-[#845D3E] rounded-full"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
                   )}
                 </a>
               );
@@ -117,17 +127,21 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <a
+            <motion.a
               href="#reservation"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={SPRING_TACTILE}
               className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-[#1C1917] hover:bg-[#845D3E] rounded-md transition-colors shadow-xs min-h-[44px]"
             >
               Reserve a Table
-            </a>
+            </motion.a>
           </div>
 
           <div className="flex md:hidden items-center">
-            <button
+            <motion.button
               type="button"
+              whileTap={{ scale: 0.92 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2.5 rounded-md text-[#1C1917] hover:bg-[#F3EFEA] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-2 focus-visible:outline-[#845D3E]"
               aria-expanded={isMobileMenuOpen}
@@ -139,59 +153,86 @@ export function Navbar() {
               ) : (
                 <Menu className="w-6 h-6" aria-hidden="true" />
               )}
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
 
-      {isMobileMenuOpen && (
-        <div
-          id="mobile-nav"
-          className="fixed inset-0 top-[65px] bg-[#FAF8F5] z-40 md:hidden flex flex-col justify-between px-6 py-8 overflow-y-auto border-t border-[#E7E2DA] animate-in fade-in duration-200"
-        >
-          <nav className="flex flex-col space-y-2" aria-label="Mobile Navigation">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-lg font-serif font-medium py-3.5 border-b border-[#E7E2DA]/60 min-h-[48px] flex items-center justify-between ${
-                    isActive ? "text-[#845D3E] font-bold" : "text-[#1C1917]"
-                  }`}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  <span>{link.label}</span>
-                  <span className="text-xs text-[#57534E]">→</span>
-                </a>
-              );
-            })}
-          </nav>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            id="mobile-nav"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.28, ease: EASE_KOMOREBI }}
+            className="fixed inset-0 top-[65px] bg-[#FAF8F5]/98 backdrop-blur-xl z-40 md:hidden flex flex-col justify-between px-6 py-8 overflow-y-auto border-t border-[#E7E2DA]"
+          >
+            <motion.nav
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.06, delayChildren: 0.05 },
+                },
+              }}
+              className="flex flex-col space-y-2"
+              aria-label="Mobile Navigation"
+            >
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    variants={{
+                      hidden: { opacity: 0, x: -16 },
+                      visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: EASE_KOMOREBI } },
+                    }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`text-lg font-serif font-medium py-3.5 border-b border-[#E7E2DA]/60 min-h-[48px] flex items-center justify-between ${
+                      isActive ? "text-[#845D3E] font-bold" : "text-[#1C1917]"
+                    }`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    <span>{link.label}</span>
+                    <span className="text-xs text-[#57534E]">→</span>
+                  </motion.a>
+                );
+              })}
+            </motion.nav>
 
-          <div className="pt-8 space-y-4">
-            <a
-              href="#reservation"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center px-6 py-3.5 text-base font-medium text-white bg-[#1C1917] hover:bg-[#845D3E] rounded-md transition-colors min-h-[48px]"
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.4 }}
+              className="pt-8 space-y-4"
             >
-              Reserve a Table
-            </a>
-            <a
-              href={cafeData.contact.googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-[#1C1917] bg-[#F3EFEA] hover:bg-[#EBE4DC] rounded-md border border-[#E7E2DA] transition-colors min-h-[48px]"
-            >
-              <span>Get Directions</span>
-              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-            </a>
-            <p className="text-xs text-center text-[#57534E] pt-2">
-              Buka setiap hari mulai pukul 07:00 WIB
-            </p>
-          </div>
-        </div>
-      )}
+              <a
+                href="#reservation"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center px-6 py-3.5 text-base font-medium text-white bg-[#1C1917] hover:bg-[#845D3E] rounded-md transition-colors min-h-[48px]"
+              >
+                Reserve a Table
+              </a>
+              <a
+                href={cafeData.contact.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-[#1C1917] bg-[#F3EFEA] hover:bg-[#EBE4DC] rounded-md border border-[#E7E2DA] transition-colors min-h-[48px]"
+              >
+                <span>Get Directions</span>
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+              <p className="text-xs text-center text-[#57534E] pt-2">
+                Buka setiap hari mulai pukul 07:00 WIB
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

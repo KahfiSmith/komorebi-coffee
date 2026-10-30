@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-jakarta), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --color-warm-bg: #FAF8F5;
   --color-warm-card: #F3EFEA;
@@ -12,6 +12,11 @@
   --color-warm-accent: #845D3E;
   --color-warm-accent-hover: #6D4C33;
   --color-warm-border: #E7E2DA;
+}
+
+:root {
+  --font-playfair: "Playfair Display", Georgia, serif;
+  --font-jakarta: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html {
@@ -27,6 +32,7 @@ body {
   color: #1C1917;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 :focus-visible {

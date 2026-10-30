@@ -1,20 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import { cafeData } from "@/data/cafe";
 import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(cafeData.seo.siteUrl),
@@ -77,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${playfair.variable} ${jakarta.variable}`}>
+    <html lang="id">
       <body className="min-h-screen bg-[#FAF8F5] text-[#1C1917] antialiased selection:bg-[#845D3E] selection:text-white">
         <a
           href="#main-content"

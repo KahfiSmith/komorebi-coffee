@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { cafeData } from "@/data/cafe";
 import { MapPin, Phone, MessageCircle } from "lucide-react";
+import { motion } from "motion/react";
+import { SPRING_TACTILE } from "@/lib/motion";
 
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -23,16 +27,15 @@ function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
 
 export function Footer() {
   const { contact, operatingHours, socials } = cafeData;
-
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#FAF8F5] text-[#1C1917] border-t border-[#E7E2DA] pt-16 pb-12">
+    <footer className="bg-[#FAF8F5] text-[#1C1917] border-t border-[#E7E2DA] pt-16 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-[#E7E2DA]">
           <div className="lg:col-span-4 space-y-4">
-            <Link href="#" className="inline-block">
-              <span className="font-serif text-2xl font-bold tracking-wider text-[#1C1917]">
+            <Link href="#" className="inline-block group">
+              <span className="font-serif text-2xl font-bold tracking-wider text-[#1C1917] group-hover:text-[#845D3E] transition-colors">
                 KOMOREBI
               </span>
               <span className="block text-[10px] tracking-[0.2em] uppercase text-[#57534E]">
@@ -45,35 +48,44 @@ export function Footer() {
             </p>
 
             <div className="flex items-center gap-3 pt-2">
-              <a
+              <motion.a
                 href={socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full bg-[#F3EFEA] hover:bg-[#845D3E] hover:text-white border border-[#E7E2DA] flex items-center justify-center transition-colors text-[#1C1917]"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={SPRING_TACTILE}
+                className="w-11 h-11 rounded-full bg-[#F3EFEA] hover:bg-[#845D3E] hover:text-white border border-[#E7E2DA] flex items-center justify-center transition-colors text-[#1C1917] shadow-2xs"
                 aria-label={`Instagram ${cafeData.name}`}
               >
                 <InstagramIcon className="w-4 h-4" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href={`https://wa.me/${contact.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full bg-[#F3EFEA] hover:bg-emerald-600 hover:text-white border border-[#E7E2DA] flex items-center justify-center transition-colors text-[#1C1917]"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={SPRING_TACTILE}
+                className="w-11 h-11 rounded-full bg-[#F3EFEA] hover:bg-emerald-600 hover:text-white border border-[#E7E2DA] flex items-center justify-center transition-colors text-[#1C1917] shadow-2xs"
                 aria-label={`WhatsApp ${cafeData.name}`}
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href={contact.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full bg-[#F3EFEA] hover:bg-[#845D3E] hover:text-white border border-[#E7E2DA] flex items-center justify-center transition-colors text-[#1C1917]"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={SPRING_TACTILE}
+                className="w-11 h-11 rounded-full bg-[#F3EFEA] hover:bg-[#845D3E] hover:text-white border border-[#E7E2DA] flex items-center justify-center transition-colors text-[#1C1917] shadow-2xs"
                 aria-label={`Google Maps ${cafeData.name}`}
               >
                 <MapPin className="w-4 h-4" aria-hidden="true" />
-              </a>
+              </motion.a>
             </div>
           </div>
 
@@ -82,36 +94,23 @@ export function Footer() {
               Navigasi Halaman
             </p>
             <ul className="space-y-2 text-sm text-[#57534E]">
-              <li>
-                <a href="#about" className="hover:text-[#845D3E] transition-colors py-1 inline-block">
-                  Tentang Kami
-                </a>
-              </li>
-              <li>
-                <a href="#menu" className="hover:text-[#845D3E] transition-colors py-1 inline-block">
-                  Signature Menu
-                </a>
-              </li>
-              <li>
-                <a href="#experience" className="hover:text-[#845D3E] transition-colors py-1 inline-block">
-                  Fasilitas & Layanan
-                </a>
-              </li>
-              <li>
-                <a href="#gallery" className="hover:text-[#845D3E] transition-colors py-1 inline-block">
-                  Galeri Foto
-                </a>
-              </li>
-              <li>
-                <a href="#reviews" className="hover:text-[#845D3E] transition-colors py-1 inline-block">
-                  Ulasan Pengunjung
-                </a>
-              </li>
-              <li>
-                <a href="#location" className="hover:text-[#845D3E] transition-colors py-1 inline-block">
-                  Peta & Jam Operasional
-                </a>
-              </li>
+              {[
+                { href: "#about", label: "Tentang Kami" },
+                { href: "#menu", label: "Signature Menu" },
+                { href: "#experience", label: "Fasilitas & Layanan" },
+                { href: "#gallery", label: "Galeri Foto" },
+                { href: "#reviews", label: "Ulasan Pengunjung" },
+                { href: "#location", label: "Peta & Jam Operasional" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="hover:text-[#845D3E] transition-all hover:translate-x-1 inline-block py-1"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
