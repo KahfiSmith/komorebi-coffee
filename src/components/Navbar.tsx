@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { cafeData } from "@/data/cafe";
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -12,17 +12,23 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const isManualScrollRef = useRef(false);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    const sectionId = href.replace("#", "");
+    if (sectionId) {
+      setActiveSection(sectionId);
+    }
+    isManualScrollRef.current = true;
+
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
-      setTimeout(() => {
-        smoothScrollTo(href);
-      }, 150);
-    } else {
-      smoothScrollTo(href);
     }
+
+    smoothScrollTo(href, 80, () => {
+      isManualScrollRef.current = false;
+    });
   };
 
   useEffect(() => {
@@ -30,6 +36,8 @@ export function Navbar() {
     
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      if (isManualScrollRef.current) return;
+
       const scrollPosition = window.scrollY + 180;
       
       let currentSection = "";
@@ -138,8 +146,9 @@ export function Navbar() {
                       className="absolute bottom-1.5 left-0 right-0 h-0.5 bg-[#845D3E] rounded-full"
                       transition={{
                         type: "spring",
-                        stiffness: 380,
-                        damping: 30,
+                        stiffness: 350,
+                        damping: 35,
+                        mass: 0.8,
                       }}
                     />
                   )}
@@ -185,10 +194,10 @@ export function Navbar() {
         {isMobileMenuOpen && (
           <motion.div
             id="mobile-nav"
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.28, ease: EASE_KOMOREBI }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.35, ease: EASE_KOMOREBI }}
             className="fixed inset-0 top-[65px] bg-[#FAF8F5]/98 backdrop-blur-xl z-40 md:hidden flex flex-col justify-between px-6 py-8 overflow-y-auto border-t border-[#E7E2DA]"
           >
             <motion.nav

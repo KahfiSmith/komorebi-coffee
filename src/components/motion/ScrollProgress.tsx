@@ -5,9 +5,9 @@ import { motion, useScroll, useSpring } from "motion/react";
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 250,
-    damping: 30,
-    restDelta: 0.001,
+    stiffness: 280,
+    damping: 35,
+    restDelta: 0.0001,
   });
 
   return (
