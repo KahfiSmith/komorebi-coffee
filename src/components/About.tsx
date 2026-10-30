@@ -25,7 +25,6 @@ export function About() {
     () => {
       if (shouldReduceMotion || !sectionRef.current) return;
 
-      // Parallax scroll on dual images
       if (primaryImageRef.current) {
         gsap.to(primaryImageRef.current, {
           yPercent: 8,
@@ -63,10 +62,8 @@ export function About() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Dual Imagery with Parallax Depth */}
           <div className="lg:col-span-6 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Primary Image */}
               <motion.div
                 ref={primaryImageRef}
                 initial={{ opacity: 0, scale: 0.94 }}
@@ -84,7 +81,6 @@ export function About() {
                 />
               </motion.div>
 
-              {/* Floating Secondary Offset Image with Parallax Depth */}
               <motion.div
                 ref={secondaryImageRef}
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -104,7 +100,6 @@ export function About() {
             </div>
           </div>
 
-          {/* Narrative Content */}
           <div className="lg:col-span-6 space-y-7">
             <motion.div
               initial="hidden"
@@ -152,7 +147,6 @@ export function About() {
               ))}
             </motion.div>
 
-            {/* Highlights Grid with Staggered Entrance */}
             <motion.div
               initial="hidden"
               whileInView="visible"

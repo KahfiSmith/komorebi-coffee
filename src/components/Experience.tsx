@@ -79,7 +79,6 @@ export function Experience() {
               transition={SPRING_TACTILE}
               className="group p-8 rounded-2xl bg-[#F3EFEA] border border-[#E7E2DA] flex flex-col justify-between hover:border-[#845D3E]/50 hover:shadow-lg transition-all duration-300 relative overflow-hidden"
             >
-              {/* Subtle accent hairline on top edge on hover */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#845D3E]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="space-y-5">

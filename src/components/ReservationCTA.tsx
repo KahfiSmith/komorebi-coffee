@@ -44,7 +44,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
       id="reservation"
       className="py-24 sm:py-32 bg-[#1C1917] text-[#FAF8F5] relative overflow-hidden"
     >
-      {/* Ambient Breathing Warm Light Orb */}
       {!shouldReduceMotion ? (
         <motion.div
           animate={{
@@ -96,7 +95,6 @@ Mohon informasi ketersediaan meja pada jadwal tersebut. Terima kasih!`;
           </motion.p>
         </div>
 
-        {/* Reservation Form Card */}
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}

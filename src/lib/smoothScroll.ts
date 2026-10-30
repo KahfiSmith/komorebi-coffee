@@ -7,10 +7,6 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollToPlugin);
 }
 
-/**
- * Premium smooth scroll with GSAP ScrollToPlugin
- * Features graceful deceleration (power3.inOut), autoKill on user scroll, and header offset.
- */
 export function smoothScrollTo(target: string | number, offset: number = 72) {
   if (typeof window === "undefined") return;
 
@@ -52,7 +48,6 @@ export function smoothScrollTo(target: string | number, offset: number = 72) {
     ease: "power3.inOut",
   });
 
-  // Update browser address bar hash cleanly without native jump
   if (window.history && window.history.pushState) {
     window.history.pushState(null, "", cleanTarget);
   }

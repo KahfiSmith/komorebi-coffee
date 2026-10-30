@@ -82,7 +82,6 @@ export function Testimonials() {
               transition={SPRING_TACTILE}
               className="relative p-8 rounded-2xl bg-[#F3EFEA] border border-[#E7E2DA] flex flex-col justify-between shadow-2xs hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
-              {/* Subtle background quotation mark for tactile depth */}
               <Quote
                 className="absolute top-4 right-4 w-16 h-16 text-[#845D3E]/8 pointer-events-none -rotate-12"
                 aria-hidden="true"

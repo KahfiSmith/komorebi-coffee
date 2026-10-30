@@ -1,16 +1,7 @@
-/**
- * Komorebi Coffee - Motion Design System Tokens & Variants
- * 
- * Aesthetic: Warm Minimalist Luxury (Japanese slow-living meets Scandinavian calm)
- * Easing: Graceful, organic, purposeful deceleration
- */
+export const EASE_KOMOREBI = [0.22, 1, 0.36, 1] as const;
+export const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
+export const EASE_SMOOTH = [0.4, 0, 0.2, 1] as const;
 
-// Custom cubic bezier easing curves
-export const EASE_KOMOREBI = [0.22, 1, 0.36, 1] as const; // Graceful decelerate (Japanese slow-living)
-export const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const; // Precise, responsive micro-interaction
-export const EASE_SMOOTH = [0.4, 0, 0.2, 1] as const; // Standard smooth transition
-
-// Spring configurations for tactile controls
 export const SPRING_TACTILE = {
   type: "spring",
   stiffness: 400,
@@ -29,7 +20,6 @@ export const SPRING_SLOW = {
   damping: 20,
 } as const;
 
-// Transition durations in seconds
 export const DURATION = {
   instant: 0.15,
   fast: 0.3,
@@ -37,8 +27,6 @@ export const DURATION = {
   slow: 0.8,
   cinematic: 1.2,
 };
-
-// Motion for React Variants
 
 export const fadeInUpVariants = {
   hidden: {

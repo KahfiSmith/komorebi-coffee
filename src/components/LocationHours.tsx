@@ -40,7 +40,6 @@ export function LocationHours() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-          {/* Details Column */}
           <motion.div
             initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -139,7 +138,6 @@ export function LocationHours() {
             </div>
           </motion.div>
 
-          {/* Interactive Map Column */}
           <motion.div
             initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}

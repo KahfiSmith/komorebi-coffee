@@ -140,7 +140,6 @@ export function Gallery() {
         </motion.div>
       </div>
 
-      {/* Lightbox Modal with AnimatePresence */}
       <AnimatePresence>
         {selectedPhotoIndex !== null && (
           <div
@@ -149,7 +148,6 @@ export function Gallery() {
             aria-label="Tampilan Foto Resolusi Penuh"
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            {/* Backdrop */}
             <motion.div
               variants={modalBackdropVariants}
               initial="hidden"

@@ -72,7 +72,6 @@ export function MenuSection() {
           </motion.p>
         </div>
 
-        {/* Category Pill Tabs with Sliding Layout Indicator */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
           {cafeData.menuCategories.map((category) => {
             const isActive = activeCategory === category.id;
@@ -117,7 +116,6 @@ export function MenuSection() {
           </motion.p>
         )}
 
-        {/* Animated Menu Grid */}
         <motion.div
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16"
@@ -211,7 +209,6 @@ export function MenuSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Full Menu Callout Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -257,7 +254,6 @@ export function MenuSection() {
         </motion.div>
       </div>
 
-      {/* Full Menu Modal with AnimatePresence */}
       <AnimatePresence>
         {isFullMenuOpen && (
           <div
@@ -266,7 +262,6 @@ export function MenuSection() {
             aria-labelledby="full-menu-title"
             className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
           >
-            {/* Backdrop */}
             <motion.div
               variants={modalBackdropVariants}
               initial="hidden"
@@ -276,7 +271,6 @@ export function MenuSection() {
               className="absolute inset-0 bg-[#1C1917]/75 backdrop-blur-sm"
             />
 
-            {/* Content Box */}
             <motion.div
               variants={modalContentVariants}
               initial="hidden"

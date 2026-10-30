@@ -40,7 +40,6 @@ export function Hero() {
     { scope: containerRef, dependencies: [shouldReduceMotion] }
   );
 
-  // Split headline for kinetic reveal
   const headlineWords = cafeData.tagline.split(" ");
 
   return (
@@ -48,7 +47,6 @@ export function Hero() {
       ref={containerRef}
       className="relative min-h-[92vh] sm:min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden"
     >
-      {/* Background Image Container with GSAP Parallax */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div
           ref={bgImageRef}
@@ -64,13 +62,10 @@ export function Hero() {
           />
         </div>
 
-        {/* Ambient Darkened Gradient for Typography Contrast */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#1C1917]/90 via-[#1C1917]/60 to-[#1C1917]/45" />
 
-        {/* Japanese Komorebi Dappled Sunlight Effect */}
         <SunlightOverlay />
 
-        {/* Subtle Decorative Kanji Watermark */}
         <div
           className="absolute right-6 sm:right-12 bottom-12 font-serif text-white/5 text-7xl sm:text-9xl select-none pointer-events-none font-bold tracking-widest hidden sm:block"
           aria-hidden="true"
@@ -80,7 +75,6 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        {/* Badge Entrance */}
         <motion.div
           initial={{ opacity: 0, y: 16, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -91,7 +85,6 @@ export function Hero() {
           <span>Specialty Coffee & Artisan Eatery</span>
         </motion.div>
 
-        {/* Kinetic Headline Reveal */}
         <h1
           className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.14] mb-6"
           aria-label={cafeData.tagline}
@@ -120,7 +113,6 @@ export function Hero() {
           </span>
         </h1>
 
-        {/* Supporting Description */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,7 +122,6 @@ export function Hero() {
           {cafeData.shortDescription}
         </motion.p>
 
-        {/* Coordinated Interactive CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -166,7 +157,6 @@ export function Hero() {
           </motion.a>
         </motion.div>
 
-        {/* Proof & Live Status Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
