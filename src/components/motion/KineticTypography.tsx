@@ -39,16 +39,14 @@ export function KineticHeading({
 
   const wordVariants = {
     hidden: {
-      y: "115%",
+      y: 20,
       opacity: 0,
-      rotateZ: 1.5,
     },
     visible: {
-      y: "0%",
+      y: 0,
       opacity: 1,
-      rotateZ: 0,
       transition: {
-        duration: 0.85,
+        duration: 0.7,
         ease: EASE_KOMOREBI,
       },
     },
@@ -66,7 +64,7 @@ export function KineticHeading({
         {words.map((word, index) => (
           <span
             key={`${word}-${index}`}
-            className="inline-block overflow-hidden py-0.5"
+            className="inline-block"
             aria-hidden="true"
           >
             <motion.span

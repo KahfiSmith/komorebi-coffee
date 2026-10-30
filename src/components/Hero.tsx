@@ -99,14 +99,14 @@ export function Hero() {
             {headlineWords.map((word, index) => (
               <span
                 key={`${word}-${index}`}
-                className="inline-block overflow-hidden py-1"
+                className="inline-block"
                 aria-hidden="true"
               >
                 <motion.span
-                  initial={{ y: "115%", opacity: 0, rotateZ: 1.2 }}
-                  animate={{ y: "0%", opacity: 1, rotateZ: 0 }}
+                  initial={{ y: 24, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
                   transition={{
-                    duration: 0.9,
+                    duration: 0.8,
                     delay: 0.25 + index * 0.055,
                     ease: EASE_KOMOREBI,
                   }}
